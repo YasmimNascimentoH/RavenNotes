@@ -1,0 +1,11 @@
+version: '6.0'
+
+services:
+  ravendb:
+    image: ravendb/ravendb:latest
+    container_name: raven_notes
+    ports:
+      - "8080:8080"   # Porta padrão para a interface web do RavenDB
+    environment:
+      - RAVEN_ServerUrl=http://0.0.0.0:8080
+      - RAVEN_Initialize=true
