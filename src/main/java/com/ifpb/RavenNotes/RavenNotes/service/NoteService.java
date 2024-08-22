@@ -4,6 +4,9 @@ import com.ifpb.RavenNotes.RavenNotes.model.Note;
 import com.ifpb.RavenNotes.RavenNotes.utilities.Message;
 import net.ravendb.client.documents.DocumentStore;
 import net.ravendb.client.documents.session.IDocumentSession;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +33,16 @@ public class NoteService {
         }
 
     }
+
+    // public List<Note> searchNotes(String query) {
+    //     try (IDocumentSession session = store.openSession()) {
+    //         return session.query(Note.class)
+    //                     .whereEquals("title", query)
+    //                     .orElse()
+    //                     .whereEquals("tags", query)
+    //                     .toList();
+    //     }
+    // }
 
     public Note getNoteById(String id) {
         try (IDocumentSession session = store.openSession()) {
