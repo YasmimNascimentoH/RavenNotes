@@ -30,6 +30,11 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+		<!-- <dependency>
+			<groupId>net.ravendb</groupId>
+			<artifactId>ravendb-client-java</artifactId>
+			<version>5.2.1</version> 
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -74,5 +79,15 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+			<repository>
+				<id>maven-central</id>
+				<url>https://repo1.maven.org/maven2/</url>
+			</repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>	
 
 </project>

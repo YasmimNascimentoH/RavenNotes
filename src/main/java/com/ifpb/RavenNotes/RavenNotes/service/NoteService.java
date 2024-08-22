@@ -16,7 +16,6 @@ public class NoteService {
     private DocumentStore store;
     @Autowired
     private Message message;
-    ;
 
     public ResponseEntity<?> addNote(Note note) {
 

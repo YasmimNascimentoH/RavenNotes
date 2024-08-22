@@ -1,11 +1,33 @@
-version: '6.0'
+version: '3.8'
 
 services:
   ravendb:
     image: ravendb/ravendb:latest
     container_name: raven_notes
     ports:
-      - "8080:8080"   # Porta padrão para a interface web do RavenDB
+      - "9090:9090"   # Porta padrão para a interface web do RavenDB
     environment:
-      - RAVEN_ServerUrl=http://0.0.0.0:8080
       - RAVEN_Initialize=true
+
+
+
+# version: '3.8'
+
+# services:
+#   ravendb:
+#     image: ravendb/ravendb:latest
+#     container_name: ravendb
+#     ports:
+#       - "9090:9090"  # Porta padrão para o RavenDB
+#     volumes:
+#       - ravendb_data:/ravendb/data
+#     networks:
+#       - note-manager-network
+
+# volumes:
+#   ravendb_data:
+#     driver: local
+
+# networks:
+#   note-manager-network:
+#     driver: bridge
