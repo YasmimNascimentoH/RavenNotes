@@ -1,6 +1,8 @@
+server:
+  port: 9090
+
 spring:
   data:
     raven:
       url: http://localhost:8080
       database: NotasDB
-

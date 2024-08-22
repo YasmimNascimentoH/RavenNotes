@@ -5,7 +5,7 @@ services:
     image: ravendb/ravendb:latest
     container_name: raven_notes
     ports:
-      - "9090:9090"   # Porta padrão para a interface web do RavenDB
+      - "8080:8080"   # Porta padrão para a interface web do RavenDB
     environment:
       - RAVEN_Initialize=true
 
