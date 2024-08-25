@@ -1,0 +1,6 @@
+com\ifpb\RavenNotes\RavenNotes\config\RavenDBConfig.class
+com\ifpb\RavenNotes\RavenNotes\controller\NoteController.class
+com\ifpb\RavenNotes\RavenNotes\utilities\Message.class
+com\ifpb\RavenNotes\RavenNotes\RavenNotesApplication.class
+com\ifpb\RavenNotes\RavenNotes\service\NoteService.class
+com\ifpb\RavenNotes\RavenNotes\model\Note.class

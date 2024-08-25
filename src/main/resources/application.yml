@@ -1,0 +1,8 @@
+server:
+  port: 9090
+
+spring:
+  data:
+    raven:
+      url: http://127.0.0.1:8080
+      database: notesdb
