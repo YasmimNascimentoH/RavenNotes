@@ -1,18 +1,10 @@
 package com.ifpb.RavenNotes.RavenNotes.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import com.ifpb.RavenNotes.RavenNotes.model.Note;
 import com.ifpb.RavenNotes.RavenNotes.service.NoteService;
 
@@ -28,12 +20,10 @@ public class NoteController {
         return noteService.addNote(note);
     }
 
-    // @GetMapping("/search")
-    // public ResponseEntity<List<Note>> searchNotes(@RequestParam String query) {
-    //     List<Note> notes = noteService.searchNotes(query);
-    
-    // return ResponseEntity.ok(notes);
-    // }
+    @GetMapping
+    public ResponseEntity<List<Note>> getAllNotes(){
+        return ResponseEntity.status(HttpStatus.OK).body(noteService.getAllNotes());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Note> getNoteById(@PathVariable String id) {
@@ -45,10 +35,16 @@ public class NoteController {
         }
     }
 
-    @PutMapping
-    public ResponseEntity<?> updateNote(@RequestBody Note note) {
-        noteService.updateNote(note);
-        return ResponseEntity.ok().build();
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateNote(@PathVariable String id, @RequestBody Note note) {
+        Note noteBD = noteService.getNoteById(id);
+        if (note != null) {
+            noteBD.setTitle(note.getTitle());
+            noteBD.setContent(note.getContent());
+            noteService.updateNote(noteBD);
+            return ResponseEntity.ok(note);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
@@ -56,6 +52,4 @@ public class NoteController {
         noteService.deleteNoteById(id);
         return ResponseEntity.noContent().build();
     }
-
-
 }

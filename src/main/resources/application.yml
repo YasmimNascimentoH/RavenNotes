@@ -4,5 +4,5 @@ server:
 spring:
   data:
     raven:
-      url: http://localhost:8080
-      database: NotasDB
+      url: http://127.0.0.1:8080
+      database: notesdb
