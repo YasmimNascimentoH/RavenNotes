@@ -1,5 +1,10 @@
 package com.ifpb.RavenNotes.RavenNotes.controller;
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.ifpb.RavenNotes.RavenNotes.model.Note;
 import com.ifpb.RavenNotes.RavenNotes.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +24,11 @@ public class NoteController {
         return noteService.addNote(note);
     }
 
+    @GetMapping
+    public ResponseEntity<List<Note>> getAllNotes(){
+        return ResponseEntity.status(HttpStatus.OK).body(noteService.getAllNotes());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getNoteById(@PathVariable String id) {
         Note note = noteService.getNoteById(id);
@@ -29,10 +39,16 @@ public class NoteController {
         }
     }
 
-    @PutMapping
-    public ResponseEntity<?> updateNote(@RequestBody Note note) {
-        noteService.updateNote(note);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateNote(@PathVariable String id, @RequestBody Note note) {
+        Note noteBD = noteService.getNoteById(id);
+        if (note != null) {
+            noteBD.setTitle(note.getTitle());
+            noteBD.setContent(note.getContent());
+            noteService.updateNote(noteBD);
+            return ResponseEntity.ok(note);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")

@@ -9,8 +9,7 @@ public class RavenDBConfig {
 
     @Bean
     public DocumentStore documentStore() {
-        System.out.println("DocumentStore bean being created...");
-        DocumentStore store = new DocumentStore("http://localhost:8080", "notesdb");
+        DocumentStore store = new DocumentStore("http://127.0.0.1:8080", "notesdb");
         store.initialize();
         return store;
     }
