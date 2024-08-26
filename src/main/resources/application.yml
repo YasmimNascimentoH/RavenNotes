@@ -5,4 +5,4 @@ spring:
   data:
     raven:
       url: http://localhost:8080
-      database: NotasDB
+      database: notesdb
